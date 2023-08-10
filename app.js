@@ -14,12 +14,15 @@ function createBoard(boardSize) {
         randomizeColor()
         
     }
-
     gridContainer.style.gridTemplateColumns = `repeat(${boardSize}, 1fr)`;
     gridContainer.style.gridTemplateRows = `repeat(${boardSize}, 1fr)`;
 }
 
+window.addEventListener("load", () => {
+    setOpacity()
+  });
 
+  
 
 newGridButton.addEventListener("click", () => {
     while (true) {
@@ -33,29 +36,13 @@ newGridButton.addEventListener("click", () => {
             alert("Invalid input. Please enter a positive number.");
         }
     }
-    document.querySelectorAll(".grid-square").forEach(div => {
-        div.addEventListener("mouseenter", () => {
-            div.style.backgroundColor = randomizeColor();
-        });
-    
-        div.addEventListener("mouseleave", () => {
-            div.style.backgroundColor = "black"; // Reset color on mouse leave
-        });
-    });
+    setOpacity()
 });
 
 
 // Initial grid creation
-createBoard(16); // Default grid size
+createBoard(16);
 
-
-// Function to create random color variable
-function randomizeColor() {
-    let x = Math.floor(Math.random() * 256);
-    let y = Math.floor(Math.random() * 256);
-    let z = Math.floor(Math.random() * 256);
-    return "rgb(" + x + "," + y + "," + z + ")";
-}
 
 // Apply random color variable to mouse enter event listener 
 document.querySelectorAll(".grid-square").forEach(div => {
@@ -69,13 +56,38 @@ document.querySelectorAll(".grid-square").forEach(div => {
     });
 });
 
+//Clears board of all filled-in divs using removeColor function
+startOverButton.addEventListener("click", () => {
+    removeColor()
+    setOpacity()
+})
+
+// Function to create random color variable
+function randomizeColor() {
+    let x = Math.floor(Math.random() * 256);
+    let y = Math.floor(Math.random() * 256);
+    let z = Math.floor(Math.random() * 256);
+    return "rgb(" + x + "," + y + "," + z + ")";
+}
+
+//Function removes background color from all divs
 function removeColor() {
     document.querySelectorAll(".grid-square").forEach(div => {
         div.style.backgroundColor = ""
     })
 }
 
-startOverButton.addEventListener("click", () => {
-    removeColor()
-})
-
+//Function incrementally increases opacity each time mouse enters a div
+function setOpacity() {
+    document.querySelectorAll(".grid-square").forEach(div => {
+        let opacity = 0
+        div.addEventListener("mouseenter", () => {
+            div.style.backgroundColor = randomizeColor();
+        });
+    
+        div.addEventListener("mouseleave", () => {
+            opacity += .1
+            div.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`; // Use rgba to set background color with opacity
+        });
+    });
+}
