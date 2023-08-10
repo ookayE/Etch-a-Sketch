@@ -1,5 +1,6 @@
 const gridContainer = document.querySelector(".grid-container");
 const newGridButton = document.querySelector(".new-grid");
+const startOverButton = document.querySelector(".clear-grid")
 
 function createBoard(boardSize) {
     gridContainer.innerHTML = ""; // Clear the previous grid
@@ -17,6 +18,8 @@ function createBoard(boardSize) {
     gridContainer.style.gridTemplateColumns = `repeat(${boardSize}, 1fr)`;
     gridContainer.style.gridTemplateRows = `repeat(${boardSize}, 1fr)`;
 }
+
+
 
 newGridButton.addEventListener("click", () => {
     while (true) {
@@ -36,10 +39,11 @@ newGridButton.addEventListener("click", () => {
         });
     
         div.addEventListener("mouseleave", () => {
-            div.style.backgroundColor = "white"; // Reset color on mouse leave
+            div.style.backgroundColor = "black"; // Reset color on mouse leave
         });
     });
 });
+
 
 // Initial grid creation
 createBoard(16); // Default grid size
@@ -62,6 +66,16 @@ document.querySelectorAll(".grid-square").forEach(div => {
 // Remove random color variable on mouse leave
     div.addEventListener("mouseleave", () => {
         div.style.backgroundColor = "black"; // Reset color on mouse leave
-        
     });
 });
+
+function removeColor() {
+    document.querySelectorAll(".grid-square").forEach(div => {
+        div.style.backgroundColor = ""
+    })
+}
+
+startOverButton.addEventListener("click", () => {
+    removeColor()
+})
+

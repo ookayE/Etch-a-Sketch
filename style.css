@@ -19,8 +19,16 @@
 /* .grid-square:hover {
     background-color: black;
 } */
+.grid-buttons {
+    width: 750px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
 
-.new-grid {
+
+.new-grid,
+.clear-grid {
     background-color: #7972ff;
     color: white;
     border: none;
