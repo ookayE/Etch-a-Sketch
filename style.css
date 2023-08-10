@@ -1,0 +1,33 @@
+.grid-container {
+    display: grid;
+    border: 1px solid black;
+    width: 800px;
+    height: 900%;
+}
+
+.grid-square {
+    background-color: white;
+    border: 1px solid black;
+    /* Set the height to be equal to the width */
+    height: 0;
+    padding-bottom: 100%; /* Maintain the aspect ratio */
+    position: relative;
+    /* Include borders in the element's dimensions */
+    box-sizing: border-box;
+}
+
+/* .grid-square:hover {
+    background-color: black;
+} */
+
+.new-grid {
+    background-color: #7972ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
